@@ -13,6 +13,83 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const questions = async (inputs = []) => {
+  const prompts = [
+    {
+      type: 'list',
+      name: 'title',
+      message: 'Which employee would you like to add?',
+      choices: ["Manager", "Engineer", "Intern"],
+    },
+    {
+      type: 'input',
+      name: 'name',
+      message: "What is the employee's name?",
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: "What is the employee's email address?",
+    },
+    {
+      type: 'number',
+      name: 'officeNumber',
+      message: "What is the manager's office number?",
+      when: function(answers) {
+        return answers.title === "Manager"
+      }
+    },
+    {
+      type: 'input',
+      name: 'github',
+      message: "What is the Engineer's Github?",
+      when: function(answers) {
+        return answers.title === "Engineer"
+      }
+    },
+    {
+      type: 'input',
+      name: 'school',
+      message: "What school does the intern go to?",
+      when: function(answers) {
+        return answers.title === "Intern"
+      }
+    },
+    {
+      type: 'confirm',
+      name: 'anotherOne',
+      message: "Would you like to create another employee profile?",
+    },
+  ];
+
+  const{anotherOne, ...answers} = await inquirer.prompt(prompts)
+  const newInputs = [...inputs, answers]
+  return anotherOne ? questions(newInputs): newInputs;
+};
+
+
+// function to initialize program
+const init = async () => {
+    console.log('Starting input questions');
+    try {
+      const answers = await questions();
+
+    //   const markdownAnswers = otherUtils(answers); WONT WORK RIGHT NOW
+  
+    //   await writeFileAsync('README.md', markdownAnswers); WONT WORK RIGHT NOW
+    
+      console.log('Thank you for providing your input');
+      console.log(answers)
+    } catch (err) {
+      console.log(err);
+    }
+};
+
+
+
+// function call to initialize program
+init();
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
