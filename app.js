@@ -80,6 +80,8 @@ const init = async () => {
     try {
       const answers = await questions();
 
+      await createProfiles(answers)
+
     //   const markdownAnswers = otherUtils(answers); WONT WORK RIGHT NOW
   
     //   await writeFileAsync('README.md', markdownAnswers); WONT WORK RIGHT NOW
@@ -102,6 +104,7 @@ const createProfiles = (answers) => {
     }
     employees.push(employee)
   }
+  console.log(employees)
 }
 
 // function call to initialize program
