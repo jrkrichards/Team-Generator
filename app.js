@@ -1,3 +1,4 @@
+// Variables
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -10,6 +11,54 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// Classes
+class Employee {
+  constructor(name, id, email) {
+    this.name = name
+    this.id = id
+    this.email = email
+    this.role = "Employee"
+  }
+  getName() {
+    return this.name
+  }
+  getId() {
+    return this.id
+  }
+  getEmail() {
+    return this.email
+  }
+  getRole() {
+    return this.role
+  }
+} 
+
+class Manager extends Employee {
+  constructor(officeNum) {
+    this.officeNum = officeNum
+    this.role = "Manager"
+  }
+}
+
+class Engineer extends Employee {
+  constructor(github) {
+    this.github = github
+    this.role = "Engineer"
+  }
+  getGithub() {
+    return this.github
+  }
+}
+
+class Intern extends Employee {
+  constructor(school) {
+    this.school = school
+    this.role = "Manager"
+  }
+  getSchool() {
+    return this.school
+  }
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -20,6 +69,11 @@ const questions = async (inputs = []) => {
       name: 'title',
       message: 'Which employee would you like to add?',
       choices: ["Manager", "Engineer", "Intern"],
+    },
+    {
+      type: 'number',
+      name: 'ee_id',
+      message: "What is the employee's id?",
     },
     {
       type: 'input',
@@ -84,7 +138,6 @@ const init = async () => {
       console.log(err);
     }
 };
-
 
 
 // function call to initialize program
