@@ -10,6 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const employees = []
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -90,7 +91,18 @@ const init = async () => {
     }
 };
 
-const createProfiles = () =>
+const createProfiles = (answers) => {
+  for (let i = 0; i < answers.length; i++) {
+    if(answers[i].title === "Manager") {
+      let employee = new Manager(answers[i].id, answers[i].name, answers[i].email, answers[i].officeNumber);
+    } else if(answers[i].title === "Engineer") {
+      let employee = new Engineer(answers[i].id, answers[i].name, answers[i].email, answers[i].gihub)
+    } else if(answers[i].title === "Intern") {
+      let employee = new Intern(answers[i].id, answers[i].name, answers[i].email, answers[i].school)
+    }
+    employees.push(employee)
+  }
+}
 
 // function call to initialize program
 init();
