@@ -83,12 +83,13 @@ const init = async () => {
       await createProfiles(answers)
 
       const renderedEmployees = await render(employees)
-      console.log(renderedEmployees)
   
-    //   await writeFileAsync('README.md', markdownAnswers); WONT WORK RIGHT NOW
+      await fs.writeFile(outputPath, renderedEmployees, (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      }); 
     
       console.log('Thank you for providing your input');
-      console.log(answers)
     } catch (err) {
       console.log(err);
     }
