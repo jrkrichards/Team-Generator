@@ -28,7 +28,7 @@ const questions = async (inputs = []) => {
       message: "What is the employee's name?",
     },
     {
-      type: 'input',
+      type: 'number',
       name: 'id',
       message: "What is the employee's id?",
     },
@@ -82,9 +82,8 @@ const init = async () => {
 
       await createProfiles(answers)
 
-      await render(employees)
-
-    //   const markdownAnswers = otherUtils(answers); WONT WORK RIGHT NOW
+      const renderedEmployees = await render(employees)
+      console.log(renderedEmployees)
   
     //   await writeFileAsync('README.md', markdownAnswers); WONT WORK RIGHT NOW
     
