@@ -29,8 +29,21 @@ const questions = async (inputs = []) => {
     },
     {
       type: 'input',
+      name: 'id',
+      message: "What is the employee's id?",
+    },
+    {
+      type: 'input',
       name: 'email',
       message: "What is the employee's email address?",
+    },
+    {
+      type: 'input',
+      name: 'officNum',
+      message: "What is the Manager's office number?",
+      when: function(answers) {
+        return answers.title === "Manager"
+      }
     },
     {
       type: 'input',
@@ -85,13 +98,13 @@ const init = async () => {
 const createProfiles = (answers) => {
   for (let i = 0; i < answers.length; i++) {
     if(answers[i].title === "Manager") {
-      let employee = new Manager(answers[i].name, answers[i].email);
+      let employee = new Manager(answers[i].name, answers[i].id, answers[i].email, answers[i].officeNum);
       employees.push(employee)
     } else if(answers[i].title === "Engineer") {
-      let employee = new Engineer(answers[i].name, answers[i].email, answers[i].github)
+      let employee = new Engineer(answers[i].name, answers[i].id, answers[i].email, answers[i].github)
       employees.push(employee)
     } else if(answers[i].title === "Intern") {
-      let employee = new Intern(answers[i].name, answers[i].email, answers[i].school)
+      let employee = new Intern(answers[i].name, answers[i].id, answers[i].email, answers[i].school)
       employees.push(employee)
     }
   }
