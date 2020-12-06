@@ -33,14 +33,6 @@ const questions = async (inputs = []) => {
       message: "What is the employee's email address?",
     },
     {
-      type: 'number',
-      name: 'officeNumber',
-      message: "What is the manager's office number?",
-      when: function(answers) {
-        return answers.title === "Manager"
-      }
-    },
-    {
       type: 'input',
       name: 'github',
       message: "What is the Engineer's Github?",
@@ -77,6 +69,8 @@ const init = async () => {
 
       await createProfiles(answers)
 
+      await render(employees)
+
     //   const markdownAnswers = otherUtils(answers); WONT WORK RIGHT NOW
   
     //   await writeFileAsync('README.md', markdownAnswers); WONT WORK RIGHT NOW
@@ -89,14 +83,12 @@ const init = async () => {
 };
 
 const createProfiles = (answers) => {
-  console.log(answers[0].title)
   for (let i = 0; i < answers.length; i++) {
     if(answers[i].title === "Manager") {
-      let employee = new Manager(answers[i].name, answers[i].email, answers[i].officeNumber);
-      console.log(employee)
+      let employee = new Manager(answers[i].name, answers[i].email);
       employees.push(employee)
     } else if(answers[i].title === "Engineer") {
-      let employee = new Engineer(answers[i].name, answers[i].email, answers[i].gihub)
+      let employee = new Engineer(answers[i].name, answers[i].email, answers[i].github)
       employees.push(employee)
     } else if(answers[i].title === "Intern") {
       let employee = new Intern(answers[i].name, answers[i].email, answers[i].school)
