@@ -38,7 +38,7 @@ const questions = async (inputs = []) => {
       message: "What is the employee's email address?",
     },
     {
-      type: 'input',
+      type: 'number',
       name: 'officNum',
       message: "What is the Manager's office number?",
       when: function(answers) {
