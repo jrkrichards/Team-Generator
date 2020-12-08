@@ -4,24 +4,19 @@
 
 This application is a software engineering team generator command line application that generates a employee team summary in an HTML file based off the user inputs. The inquirer package is utilized to obtain the user information. Once all the information is collected the application generate new classes and utilizes the built in methods to extract the required information for the HTML file. Additionally, this app has tests built with jest to ensure it is running as expected.
 
+### Team Generator:
+
+Start:
+![Image of Start](./Assets/Team_Generator.PNG)
+
 ## Table of Contents
 
-- [Website](#Website)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [License](#License)
 - [Contributing](#Contributing)
 - [Tests](#Tests)
 - [Questions](#Questions)
-
-## Website
-
-Website URL: https://jrkrichards.github.io/Team-Generator/
-
-### Team Generator:
-
-Start:
-![Image of Start](./Assets/Team_Generator.PNG)
 
 ## Installation
 
