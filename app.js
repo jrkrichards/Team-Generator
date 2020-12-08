@@ -39,7 +39,7 @@ const questions = async (inputs = []) => {
     },
     {
       type: 'number',
-      name: 'officNum',
+      name: 'officeNum',
       message: "What is the Manager's office number?",
       when: function(answers) {
         return answers.title === "Manager"
